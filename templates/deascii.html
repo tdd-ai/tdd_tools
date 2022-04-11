@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Taner Sezer" >
+    <script src="//code.jquery.com/jquery-3.4.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 100px;
+        }
+
+        p .note {
+            text-align: center;
+        }
+
+        .back1 {
+
+            vertical-align: top;
+            background-color: #ffffe6;
+            padding: 1%;
+        }
+
+        .back2 {
+
+            vertical-align: top;
+            background-color: ghostwhite;
+            padding: 1%;
+
+        }
+
+        .back3 {
+
+            vertical-align: top;
+            background-color: #ffffe6;
+            padding: 1%;
+
+        }
+
+        .back4 {
+            vertical-align: top;
+            background-color: ghostwhite;
+            padding: 1%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <a class="navbar-brand" href="/"><img src="static/tdd_logo.png" height="50%" width="50%"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <ul class="navbar-nav mr-auto">
+
+
+                       <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('freq') }}>Frequency</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('freq_ci') }}>Frequency_CI</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('deasci') }}>Deascifiier</a>
+                </li>
+
+                 <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('list_control') }}>List Check</a>
+                </li>
+
+      <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('about') }}>About</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3 class="mt-5"><b>Turkish Deasciifier</b></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="form-group">
+                <form action="http://127.0.0.1:5000/deascii" method="POST">
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control form-control-lg" name='word' id='word'
+                                placeholder='Please enter the keyword'>
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <button type="submit" name="form" value="Submit" id='submit'
+                                class="btn btn-success btn-lg btn-block">Process</button>
+                        </div>
+                    </div>
+                    <hr>
+<div class="container">
+    {{ error }} <br>
+                    <p style="background:azure; padding:5px;">
+       <strong>Input:</strong></br> {{ word }} <br>
+                    </p>
+                    <hr>
+                    <p style="background:aliceblue; padding:5px;">
+    <strong>Output:</strong></br> {{ my_deasciified_turkish_txt }} <br>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+tdd @ 2022
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
