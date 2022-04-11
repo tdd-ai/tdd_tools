@@ -77,14 +77,14 @@ p .note {text-align:center;}
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#theModels" aria-expanded="true" aria-controls="theModels">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#Deasciifier" aria-expanded="true" aria-controls="Deasciifier">
           Turkish Deasciifier
         </button>
       </h5>
     </div>
 
 
-    <div id="theModels" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="Deasciifier" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
 This tool deascifies given texts.<br/>
 The tool uses <a href="https://github.com/emres/turkish-deasciifier">turkish-deasciifier</a> by Emre Sevinç.
@@ -97,14 +97,15 @@ The tool uses <a href="https://github.com/emres/turkish-deasciifier">turkish-dea
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#circle_Coverage" aria-expanded="false" aria-controls="circle_Coverage">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#Frequency" aria-expanded="false" aria-controls="Frequency">
           Turkish Frequency Case Sensitive
         </button>
       </h5>
     </div>
-        <div id="circle_Coverage" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div id="Frequency" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-This tools calculates the frequency for tpe tokens in given text. The frequency is calculated case sensitively which means
+This tool calculates the frequency of tokens in given text.
+          The frequency is calculated case sensitively which means
           "git" and "GİT" considered as two different tokens.
       </div>
     </div>
@@ -116,20 +117,37 @@ This tools calculates the frequency for tpe tokens in given text. The frequency 
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#physics" aria-expanded="false" aria-controls="physics">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#Frequency_ci" aria-expanded="false" aria-controls="Frequency_ci">
         Turkish Frequency Case Insensitive
         </button>
       </h5>
     </div>
-    <div id="physics" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="Frequency_ci" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-         This tools calculates the frequency for tpe tokens in given text. The frequency is calculated case insensitively which means
+         This tool calculates the frequency of tokens in given text.
+          The frequency is calculated case insensitively which means
           "git" and "GİT" considered as one and same token.
       </div>
     </div>
   </div>
 <!-- -- -->
 
+ <!-- List Check -->
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#list_check" aria-expanded="false" aria-controls="list_check">
+        List Check Tool
+        </button>
+      </h5>
+    </div>
+    <div id="list_check" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+         This tools checks if words in a given list occurs in the given text file.
+      </div>
+    </div>
+  </div>
+<!-- -- -->
   
 </div>       
         
