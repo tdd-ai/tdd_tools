@@ -44,7 +44,7 @@ def freq_post():
         freqed = freq_cal(word.replace("\n", " ").rstrip(" "))
         num_of_tokens = freqed[0]
         num_unique_tokens = freqed[1]
-        ttr = freqed[2]
+        ttr = "%.2f" % round(freqed[2], 2)
         freq_list = []
         for item in freqed[4]:
             freq_list.append(item)
@@ -68,7 +68,7 @@ def freq_ci_post():
         freqed_ci = freq_ci_cal(word.replace("\n", " ").rstrip(" "))
         num_of_tokens = freqed_ci[0]
         num_unique_tokens = freqed_ci[1]
-        ttr = freqed_ci[2]
+        ttr = "%.2f" % round(freqed_ci[2], 2)
         freq_list = []
         for item in freqed_ci[4]:
             freq_list.append(item)

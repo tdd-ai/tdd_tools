@@ -11,6 +11,7 @@ def freq_cal(text):
     tokens = re.sub(r"\t{1,}", " ", tokens)
     tokens = tokens.replace("'''", "\"")
     tokens = tokens.replace("''", "\"")
+    tokens = tokens.replace("\n", " ").strip(" ")
     word_list = white_spaced(tokens).split(" ")
     freq_dic = {}
     for word in word_list:
