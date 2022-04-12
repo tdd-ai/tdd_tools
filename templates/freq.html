@@ -40,10 +40,15 @@ Turkish Frequency Case Sensitive
 
 <div class="form-group row">
                         <div class="col-sm-5">
+
 <strong>Number of Tokens:</strong> {{ num_of_tokens }}<br>
 <strong>Number of Unique Tokens:</strong> {{ num_unique_tokens }}<br>
-<strong>Type/Token Ratio:</strong> {{ ttr }}<br>
-<strong>Input Text:</strong><br>{{ word }}
+<strong>Type/Token Ratio:</strong> {{ ttr }}
+                            <br>
+<b>0 <meter id="num_token" value="{{ num_unique_tokens }}" min="0" max="{{ num_of_tokens }}">{{ num_of_tokens }}</meter> 1</b><br>
+<em>Higher values represent complex texts.</em>
+                            <hr>
+                            <strong>Input Text:</strong><br>{{ word }}
                         </div>
 
                         <div class="col-sm-7">

@@ -39,6 +39,8 @@ Text File vs Word List
 
                 </form>
             </div>
+
+
         </div>
         <div class="container">
 
@@ -47,14 +49,14 @@ Text File vs Word List
 
                             <p><b>Matches:</b></p>
          {% for word in matches %}
-      <p>{{ word }}</p>
+      <p><mark>{{ word }}</mark></p>
   {% endfor %}<br>
                         </div>
 
                         <div class="col-sm-6">
                             <p><b>Misses:</b></p>
           {% for word in misses %}
-      <p>{{ word }}</p>
+      <p><unmark>{{ word }}</unmark></p>
   {% endfor %}<br>
                         </div>
 
