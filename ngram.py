@@ -15,7 +15,7 @@ def white_spaced(text):
 
 def gen_ngram(text, size):
     ngrams_list = []
-    text = turk_lower(white_spaced(text)).strip().split(" ")
+    text = turk_lower(white_spaced(text).replace("  ", " ").replace("\n", "")).strip(" ").split(" ")
     for num in range(0, len(text)):
         ngram = text[num:num + size]
         ngrams_list.append(ngram)
