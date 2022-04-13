@@ -1,11 +1,17 @@
 from flask import Flask, redirect, url_for, render_template, request, flash, jsonify
-import json
-from collections import Counter
+import re
 from deascii import Deasciifier
 from freq_ci import freq_ci_cal
 from freq import freq_cal
 from list_in_text import check
-from list_in_text import counts
+from ngram import gen_ngram
+
+
+def char_count(input_text):
+    char=0
+    for line in input_text:
+        char+=1
+    return char
 
 app = Flask(__name__)
 
@@ -94,11 +100,28 @@ def list_check():
         matches = check(girdi_metin, word_list)[0]
         misses = check(girdi_metin, word_list)[1]
         return render_template("list_check.html",
-                               word_list = word_list,
-                               girdi_metin = girdi_metin,
+                               word_list=word_list,
+                               girdi_metin=girdi_metin,
                                matches=matches,
                                misses=misses
                                )
+
+@app.route('/ngram')
+def ngram():
+    return render_template('/ngram.html')
+
+@app.route('/ngram', methods=['POST'])
+def ngram_calculation():
+    if request.method == 'POST':
+        girdi_metin = request.form['text_input']
+        n_span = int(request.form['ngram_span'])
+        ngrams = gen_ngram(girdi_metin,n_span)
+        num_of_ngrams = len(ngrams)
+        return render_template("ngram.html",
+                            num_of_ngrams=num_of_ngrams,
+                            ngram_input=girdi_metin,
+                            ngrams=ngrams)
+
 
 if __name__ == '__main__':
     app.config["DEBUG"] = True
