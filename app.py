@@ -6,13 +6,6 @@ from freq import freq_cal
 from list_in_text import check
 from ngram import gen_ngram
 
-
-def char_count(input_text):
-    char=0
-    for line in input_text:
-        char+=1
-    return char
-
 app = Flask(__name__)
 
 @app.route('/')
