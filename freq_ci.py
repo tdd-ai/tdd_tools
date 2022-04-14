@@ -9,18 +9,22 @@ def turk_lower(word):
 
 def white_spaced(text):
     # punc = ['.', ',', '!', '?', ':', ';']
-    txt = re.sub(r'([a-zşğıiüöçA-ZŞĞIİÜÖÇ])([,.!";:])', r'\1 \2 ', text)
+    txt = re.sub(r'([a-zşğıiüöçA-ZŞĞIİÜÖÇ])([?,.!"“”;:])', r'\1 \2 ', text)
     return txt
 
 
 def freq_ci_cal(text):
     tokens = white_spaced(turk_lower(text))
-    tokens = re.sub(r" {2,}", " ", tokens)
+    tokens = re.sub(r" {1,}", " ", tokens)
     tokens = re.sub(r"\t{1,}", " ", tokens)
+    tokens = re.sub(r"\n{1,}", " ", tokens)
+    tokens = re.sub(r"\r{1,}", " ", tokens)
     tokens = tokens.replace("'''", "\"")
     tokens = tokens.replace("''", "\"")
-    tokens = tokens.replace("\n", " ").strip(" ")
-    word_list = white_spaced(tokens).split(" ")
+    tokens = tokens.replace("“", "")
+    tokens = tokens.replace("”", "")
+    tokens = tokens.replace("\n", " ").strip()
+    word_list = white_spaced(tokens).split()
     freq_dic = {}
     for word in word_list:
         try:

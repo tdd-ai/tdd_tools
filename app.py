@@ -43,17 +43,22 @@ def freq_post():
         freqed = freq_cal(word.replace("\n", " ").rstrip(" "))
         num_of_tokens = freqed[0]
         num_unique_tokens = freqed[1]
-        ttr = "%.2f" % round(freqed[2], 2)
+        ttr = "%.3f" % round(freqed[2], 2)
         freq_list = []
         for item in freqed[4]:
             freq_list.append(item)
+        if len(freq_list) <= 25:
+            top_25 = freq_list
+        else:
+            top_25 = freq_list[:25]
         return render_template("freq.html",
                                word=word,
-                               freqed=freqed,
+                               freqed=freqed[4],
                                num_of_tokens=num_of_tokens,
                                num_unique_tokens=num_unique_tokens,
                                ttr=ttr,
-                               freq_list=freq_list)
+                               freq_list=freq_list,
+                               top_25=top_25)
 
 
 @app.route('/freq_ci')
@@ -67,17 +72,22 @@ def freq_ci_post():
         freqed_ci = freq_ci_cal(word.replace("\n", " ").rstrip(" "))
         num_of_tokens = freqed_ci[0]
         num_unique_tokens = freqed_ci[1]
-        ttr = "%.2f" % round(freqed_ci[2], 2)
+        ttr = "%.3f" % round(freqed_ci[2], 2)
         freq_list = []
         for item in freqed_ci[4]:
             freq_list.append(item)
+        if len(freq_list) <= 25:
+            top_25 = freq_list
+        else:
+            top_25 = freq_list[:25]
         return render_template("freq_ci.html",
                                word=word,
                                freqed_ci=freqed_ci,
                                num_of_tokens=num_of_tokens,
                                num_unique_tokens=num_unique_tokens,
                                ttr=ttr,
-                               freq_list=freq_list)
+                               freq_list=freq_list,
+                               top_25=top_25)
 
 
 @app.route('/list_check')

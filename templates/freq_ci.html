@@ -41,17 +41,37 @@ Turkish Frequency Case Insensitive
     {{ error }} <br>
 
 <div class="form-group row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-8">
 <strong>Number of Tokens:</strong> {{ num_of_tokens }}<br>
 <strong>Number of Unique Tokens:</strong> {{ num_unique_tokens }}<br>
 <strong>Type/Token Ratio:</strong> {{ ttr }} <br>
 <b>0 <meter id="num_token" value="{{ num_unique_tokens }}" min="0" max="{{ num_of_tokens }}">{{ num_of_tokens }}</meter> 1</b><br>
 <em>Higher values represent complex texts.</em>
                             <hr>
+                            <div id = "container" style = "width: auto; height: 400px; margin: 0 auto">
+      </div>
+
+                            <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+               ['Frequency', 'Word'],
+
+               {% for count, word in top_25 %}
+                   ['{{ word }}', {{ count }}] {{","}}
+                   {% endfor %}
+            ]);
+            var options = {title: 'Frequency (Top 25 Words)'};
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
 <strong>Input Text:</strong><br>{{ word }}
                         </div>
 
-                        <div class="col-sm-7">
+                        <div class="col-sm-4">
 <strong>Frequency List:</strong>
                             {% for count, word in freq_list %}
       <p>{{ count }} {{ word }} </p>
