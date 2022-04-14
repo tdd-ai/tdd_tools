@@ -5,6 +5,7 @@ from freq_ci import freq_ci_cal
 from freq import freq_cal
 from list_in_text import check
 from ngram import gen_ngram
+from collections import Counter
 
 app = Flask(__name__)
 
@@ -118,12 +119,13 @@ def ngram_calculation():
     if request.method == 'POST':
         girdi_metin = request.form['text_input']
         n_span = int(request.form['ngram_span'])
-        ngrams = gen_ngram(girdi_metin,n_span)
+        ngrams = gen_ngram(girdi_metin, n_span)
         num_of_ngrams = len(ngrams)
         return render_template("ngram.html",
                             num_of_ngrams=num_of_ngrams,
                             ngram_input=girdi_metin,
-                            ngrams=ngrams)
+                            ngrams=ngrams
+                              )
 
 
 if __name__ == '__main__':

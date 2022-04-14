@@ -41,7 +41,7 @@ Turkish Frequency Case Sensitive
     {{ error }} <br>
 
 <div class="form-group row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8" style="background-color: Ivory;">
 <strong>Number of Tokens:</strong> {{ num_of_tokens }}<br>
 <strong>Number of Unique Tokens:</strong> {{ num_unique_tokens }}<br>
 <strong>Type/Token Ratio:</strong> {{ ttr }}
@@ -73,15 +73,35 @@ Turkish Frequency Case Sensitive
 </div>
 <div class="col-sm-4">
 <strong>Frequency List:</strong>
-{% for count, word in freq_list %}
-      <p>{{ count }} {{ word }} </p>
-  {% endfor %}<br>
+<table id="tables" class="display" style="width:100%;">
+    <thead>
+<tr>
+<th>Count</th>
+<th>Word</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    {% for count, word in freq_list %}
+    <td>
+        {{ count }}
+    </td>
+    <td>
+        {{ word }}
+    </td>
+
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+
                         </div>
 
                     </div>
 
             <div class="row">
-                    {{  freqed }}
                 <hr>
                 <div class="col-lg-12 text-center">
 tdd @ 2022
