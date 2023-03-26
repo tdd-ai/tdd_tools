@@ -1,37 +1,42 @@
 import re
+import sys
+from collections import defaultdict
+
+f = open(sys.argv[1]).read()
 
 def white_spaced(text):
-    # punc = ['.', ',', '!', '?', ':', ';']
     txt = re.sub(r'([a-zşğıiüöçA-ZŞĞIİÜÖÇ.])([?,.!"“”;:])', r'\1 \2 ', text)
     return txt
 
 def freq_cal(text):
     tokens = white_spaced(text)
-    tokens = re.sub(r" {1,}", " ", tokens)
-    tokens = re.sub(r"\t{1,}", " ", tokens)
-    tokens = re.sub(r"\n{1,}", " ", tokens)
-    tokens = re.sub(r"\r{1,}", " ", tokens)
+    tokens = re.sub(r"\s+", " ", tokens)
     tokens = tokens.replace("'''", "\"")
     tokens = tokens.replace("''", "\"")
-    tokens = tokens.replace("“", "")
-    tokens = tokens.replace("”", "")
-    tokens = tokens.replace("\n", " ").strip()
+    tokens = tokens.translate(str.maketrans('', '', "“”"))
+    tokens = tokens.replace("\n", " ")
+    tokens = tokens.strip()
     word_list = white_spaced(tokens).split()
-    freq_dic = {}
+    freq_dic = defaultdict(int)
     for word in word_list:
-        try:
-            freq_dic[word] += 1
-        except:
-            freq_dic[word] = 1
-    freq_list = freq_dic.items()
-    freq_list2 = [(val, key) for key, val in freq_dic.items()]
-    freq_list2.sort(reverse=True)
-    resultset = {}
+        freq_dic[word] += 1
+    words = sorted(freq_dic.items(), key=lambda x: x[1], reverse=True)
     token_count = len(word_list)
     unique_token = len(freq_dic)
-    resultset['input'] = tokens
-    words = freq_list2
     ratio = unique_token / token_count
-    return token_count, unique_token, ratio, tokens, words
+    resultset = {
+        'input': tokens,
+        'word_count': token_count,
+        'unique_count': unique_token,
+        'word_frequency': words,
+        'type_token_ratio': ratio
+    }
+    return resultset
+    
+#result = freq_cal(f)
+#word_freqs = result['word_frequency']
 
-
+#for word, freq in word_freqs:
+#    print(f"{word}: {freq}")
+    
+    
