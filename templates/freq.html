@@ -40,13 +40,14 @@ Turkish Frequency Case Sensitive
         <div class="container">
     {{ error }} <br>
 
+{{words}}
 <div class="form-group row">
                         <div class="col-sm-8" style="background-color: Ivory;">
-<strong>Number of Tokens:</strong> {{ num_of_tokens }}<br>
-<strong>Number of Unique Tokens:</strong> {{ num_unique_tokens }}<br>
-<strong>Type/Token Ratio:</strong> {{ ttr }}
+<strong>Number of Tokens:</strong> {{token_count}}<br>
+<strong>Number of Unique Tokens:</strong> {{ unique_token }}<br>
+<strong>Type/Token Ratio:</strong> {{ ratio }}
                             <br>
-<b>0 <meter id="num_token" value="{{ num_unique_tokens }}" min="0" max="{{ num_of_tokens }}">{{ num_of_tokens }}</meter> 1</b><br>
+<b>0 <meter id="num_token" value="{{ unique_token }}" min="0" max="{{ token_count }}">{{ token_count }}</meter> 1</b><br>
 <em>Higher values represent complex texts.</em>
                             <hr>
 <div id = "container" style = "width: auto; height: 400px; margin: 0 auto">
@@ -57,7 +58,7 @@ Turkish Frequency Case Sensitive
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable([
                ['Word', 'Frequency'],
-               {% for count, word in top_25 %}
+               {% for count, word in words %}
                 ['{{ word }}', {{ count }}] {{","}}
                    {% endfor %}
             ]);
@@ -69,7 +70,7 @@ Turkish Frequency Case Sensitive
          google.charts.setOnLoadCallback(drawChart);
       </script>
 
-<strong>Input Text:</strong><br>{{ word }}
+<strong>Input Text:</strong><br>{{tokens}}
 </div>
 <div class="col-sm-4">
 <strong>Frequency List:</strong>
@@ -82,7 +83,7 @@ Turkish Frequency Case Sensitive
 </thead>
 <tbody>
 <tr>
-    {% for count, word in freq_list %}
+    {% for count, word in words %}
     <td>
         {{ count }}
     </td>

@@ -4,7 +4,7 @@ from deascii import Deasciifier
 from freq_ci import freq_ci_cal
 from freq import freq_cal
 from list_in_text import check
-from ngram import gen_ngram
+from ngram import generate_ngrams
 from collections import Counter
 
 app = Flask(__name__)
@@ -41,25 +41,13 @@ def freq():
 def freq_post():
     if request.method == 'POST':
         word = request.form['word']
-        freqed = freq_cal(word.replace("\n", " ").rstrip(" "))
-        num_of_tokens = freqed[0]
-        num_unique_tokens = freqed[1]
-        ttr = "%.3f" % round(freqed[2], 2)
-        freq_list = []
-        for item in freqed[4]:
-            freq_list.append(item)
-        if len(freq_list) <= 25:
-            top_25 = freq_list
-        else:
-            top_25 = freq_list[:25]
-        return render_template("freq.html",
-                               word=word,
-                               freqed=freqed[4],
-                               num_of_tokens=num_of_tokens,
-                               num_unique_tokens=num_unique_tokens,
-                               ttr=ttr,
-                               freq_list=freq_list,
-                               top_25=top_25)
+        word_freqs = freq_cal(word)
+        tokens = word_freqs['input']
+        token_count = word_freqs['word_count']
+        unique_token = word_freqs['unique_count']
+        words = word_freqs['word_frequency']
+        ratio = word_freqs['type_token_ratio']
+        return render_template("freq.html", tokens=tokens, token_count=token_count, unique_token=unique_token, words=words, ratio=ratio)
 
 
 @app.route('/freq_ci')
@@ -103,11 +91,13 @@ def list_check():
         word_list = word_list.replace("\n", " ").strip(" ")
         matches = check(girdi_metin, word_list)[0]
         misses = check(girdi_metin, word_list)[1]
+        var_freq = Counter(matches)
         return render_template("list_check.html",
                                word_list=word_list,
                                girdi_metin=girdi_metin,
                                matches=matches,
-                               misses=misses
+                               misses=misses,
+                               var_freq=var_freq
                                )
 
 @app.route('/ngram')
@@ -119,13 +109,26 @@ def ngram_calculation():
     if request.method == 'POST':
         girdi_metin = request.form['text_input']
         n_span = int(request.form['ngram_span'])
-        ngrams = gen_ngram(girdi_metin, n_span)
+        ngrams = generate_ngrams(girdi_metin, n_span)
         num_of_ngrams = len(ngrams)
         return render_template("ngram.html",
                             num_of_ngrams=num_of_ngrams,
                             ngram_input=girdi_metin,
                             ngrams=ngrams
                               )
+
+@app.route('/word_cloud')
+def word_cloud():
+    return render_template('/word_cloud.html')
+
+@app.route('/word_cloud')
+def word_cloud_creator():
+    girdi_metin = request.form['text_input']
+
+    return render_template("word_cloud.html",
+                           wc_input=girdi_metin,
+                           )
+
 
 
 if __name__ == '__main__':

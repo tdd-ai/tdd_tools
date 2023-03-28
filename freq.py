@@ -1,8 +1,6 @@
 import re
-import sys
 from collections import defaultdict
 
-f = open(sys.argv[1]).read()
 
 def white_spaced(text):
     txt = re.sub(r'([a-zşğıiüöçA-ZŞĞIİÜÖÇ.])([?,.!"“”;:])', r'\1 \2 ', text)
