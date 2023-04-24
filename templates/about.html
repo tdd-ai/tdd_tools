@@ -1,4 +1,7 @@
-{% include 'navbar.html' %}
+{% extends "base.html" %}
+{% block content %}
+
+
 
 <main role="main">
 
@@ -10,7 +13,7 @@
         </div>
       </div>
     </div>
-    
+
 
 <div class="container">
 
@@ -35,68 +38,30 @@ The tool uses <a href="https://github.com/emres/turkish-deasciifier">turkish-dea
       </div>
     </div>
   </div>
-<!-- -- -->  
- 
-<!-- Turkish Frequency Case Sensitive -->
+<!-- -- -->
+
+<!-- Turkish Frequency -->
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#Frequency" aria-expanded="false" aria-controls="Frequency">
-          Turkish Frequency Case Sensitive
+          Frequency Calculator
         </button>
       </h5>
     </div>
         <div id="Frequency" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
 This tool calculates the frequency of tokens in given text.
-          The frequency is calculated case sensitively which means
-          "git" and "GİT" considered as two different tokens.
+          The frequency could be calculated both as case sensitive and case insensitive.
       </div>
     </div>
   </div>
-  
-<!-- -- -->  
-  
-  <!-- Turkish Frequency Case Insensitive -->
+
+<!-- -- -->
+
+ <!-- nGram -->
   <div class="card">
     <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#Frequency_ci" aria-expanded="false" aria-controls="Frequency_ci">
-        Turkish Frequency Case Insensitive
-        </button>
-      </h5>
-    </div>
-    <div id="Frequency_ci" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-         This tool calculates the frequency of tokens in given text.
-          The frequency is calculated case insensitively which means
-          "git" and "GİT" considered as one and same token.
-      </div>
-    </div>
-  </div>
-<!-- -- -->
-
- <!-- List Check -->
-  <div class="card">
-    <div class="card-header" id="headingFour">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#list_check" aria-expanded="false" aria-controls="list_check">
-        List Check Tool
-        </button>
-      </h5>
-    </div>
-    <div id="list_check" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-      <div class="card-body">
-         This tools checks if words in a given list occurs in the given text file.
-      </div>
-    </div>
-  </div>
-<!-- -- -->
-
-
- <!-- List Check -->
-  <div class="card">
-    <div class="card-header" id="headingFive">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#ngram" aria-expanded="false" aria-controls="ngram">
         Ngram Tool
@@ -110,14 +75,24 @@ This tool calculates the frequency of tokens in given text.
     </div>
   </div>
 <!-- -- -->
-  
-</div>       
-        
-        </div>
+
+<!-- Word Cloud -->
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#word_cloud" aria-expanded="false" aria-controls="word_cloud">
+        Word Cloud
+        </button>
+      </h5>
+    </div>
+    <div id="word_cloud" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+      <div class="card-body">
+         This tools generates word cloud from the given text file with specified options.
       </div>
-</div>
+    </div>
+  </div>
+<!-- -- -->
 
+  </main>
 
-</body>
-
-</html>
+{% endblock %}
