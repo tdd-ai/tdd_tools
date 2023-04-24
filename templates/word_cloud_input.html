@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Main jumbotron for title only -->
+<div class="jumbotron" style="padding-bottom: 0">
+<div class="col-lg-12 text-center">
+<h3 class="mt-5"><b>Word Cloud Tool</b></h3>
+</div>
+</div>
+
+<!-- Main container for data input -->
+<div class="container">
+    <div class="alert alert-danger" role="alert" id="flash-message" style="display:none;">
+    {{ get_flashed_messages()[0] }}
+</div>
+  <div class="row">
+    <div class="col-md-9">
+      <form method="POST" onsubmit="return validateInput();">
+        <label for="in_text"><b>The Text:</b></label>
+        <textarea rows="4" cols="50" class="form-control form-control-lg" name='in_text' id='in_text'></textarea>
+        <small id="text-count" class="form-text text-muted"></small>
+    </div>
+    <div class="col-md-3">
+
+                <label for="case"><b>Case:</b></label>
+        <select class="form-control" id="case" name="case">
+            <option value="c_ins" selected>Case Insensitive</option>
+            <option value="c_sens">Case Sensitive</option>
+        </select>
+
+                <label for="stop_w"><b>StopWords:</b></label>
+        <select class="form-control" id="stop_w" name="stop_w">
+            <option value="use" selected>Remove StopWords</option>
+            <option value="n_use">Don't Remove StopWords</option>
+        </select>
+
+                <label for="colormap"><b>Color Map:</b></label>
+        <select class="form-control" id="colormap" name="colormap">
+            <option value="rainbow" selected>Rainbow</option>
+            <option value="spring">Spring</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+            <option value="summer">Summer</option>
+            <option value="pink">Pink</option>
+            <option value="inferno">Inferno</option>
+            <option value="Dark2">Dark</option>
+            <option value="Greys">Greys</option>
+            <option value="Oranges">Oranges</option>
+            <option value="Greens">Greens</option>
+            <option value="Purples">Purples</option>
+            <option value="Reds">Reds</option>
+            <option value="Paired">Paired</option>
+            <option value="cividis">Cividis</option>
+            <option value="binary">Binary</option>
+            <option value="cool">Cool</option>
+            <option value="coolwarm">CoolWarm</option>
+            <option value="copper">Copper</option>
+            <option value="plasma">Plasma</option>
+            <option value="ocean">Ocean</option>
+            <option value="seismic">Seismic</option>
+            <option value="gnuplot">GNUPlot</option>
+            <option value="Spectral">Spectral</option>
+            <option value="twilight">Twilight</option>
+            <option value="jet">Jet</option>
+            <option value="Wistia">Wistia</option>
+            <option value="cubehelix">Cubehelix</option>
+            <option value="gist_earth">Gist Earth</option>
+            <option value="gist_heat">Gist Heat</option>
+            <option value="hot">Hot</option>
+            <option value="hsv">HSV</option>
+            <option value="magma">Magma</option>
+            <option value="prism">Prism</option>
+            <option value="terrain">Terrain</option>
+            <option value="turbo">Turbo</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Generate Word Cloud</button>
+      </form>
+  </div>
+</div>
+<!-- Form -->
+{% endblock %}

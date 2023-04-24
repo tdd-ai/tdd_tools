@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>hljs.highlightAll();</script>
+<style>
+  pre {
+  background-color: #eeeded;
+  border: 1px solid #CCC;
+  font-size: 14px;
+  line-height: 1.5;
+}
+pre code {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 14px;
+  color: #af0808;
+}
+pre code .keyword {
+  color: #0072B2;
+  font-weight: bold;
+}
+pre code .string {
+  color: #D55E00;
+}
+pre code .comment {
+  color: #682826;
+}
+
+footer {
+  height: fit-content;
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  background-color: #f6da74;
+  color: #000000;
+  bottom: 0;
+  font-weight: bold;
+}
+
+.rcorner {
+  border-radius: 3px;
+  border: 2px solid #c08a3e;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-color: #e0e1e3;
+}
+.border {
+  border: 2px solid #dae6fb;
+    padding: 10px;
+}
+
+.word-count {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 4px 10px;
+  border-radius: 50%;
+  background-color: #3f51b5;
+  color: white;
+  font-size: 12px;
+}
+
+.word_c {
+  height: fit-content;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+}
+
+  .selected {
+    border: 2px solid red;
+    background-color: yellow;
+  }
+  span.highlighted {
+  background-color: yellow;
+}
+
+</style>
+</head>
+
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light shadow">
+        <a class="navbar-brand" href="/"><img src="static/tdd_logo.png" height="40%" width="40%"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ham_menu"
+            aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="ham_menu">
+  <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('freq_input') }}>Frequency</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('deascii_input') }}>Deascifiier</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('ngram_input') }}>Ngram</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('wc_input') }}>Word Cloud</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" <a href={{ url_for('about') }}>About</a>
+                </li>
+
+  </ul>
+        </div>
+    </nav>
+<body class="jumbotron">
+{% block content %}
+
+
+
+
+{% endblock %}
+</body>
+    <footer class="footer text-center" style="width: 100%">
+        <hr style="border-top: 1px solid black;">
+        <p style="font-size: 9pt;">TDD - 2023</p>
+        <hr style="border-top: 1px solid black;">
+    </footer>
+
+</html>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Check if there is a message
+    if ($('#flash-message').html().trim().length > 0) {
+        // Display the div if there is a message
+        $('#flash-message').show();
+    }
+  });
+
+  function validateInput() {
+    var input = document.getElementById('in_text').value;
+    var tokens = input.trim().split(/\s+/);
+    var tokenCount = tokens.length;
+    var maxTokens = 4500;
+
+    if (input.trim() === '') {
+      alert('Input text cannot be empty!');
+      return false;
+    } else if (tokenCount > maxTokens) {
+      alert('Input text exceeds the maximum limit of ' + maxTokens + ' tokens!');
+      return false;
+    }
+
+    return true;
+  }
+
+  // Display the number of tokens as the user types
+  $('#in_text').on('input', function() {
+    var input = $(this).val();
+    var tokens = input.trim().split(/\s+/);
+    var tokenCount = tokens.length;
+
+    $('#text-count').text(tokenCount + ' tokens');
+  });
+</script>

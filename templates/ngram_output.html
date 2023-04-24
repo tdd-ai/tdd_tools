@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!-- Start Jumbotron -->
+<div class="jumbotron">
+    <!-- Start First Row In Jumbotron -->
+<div class="row container-fluid">
+    <!-- Start First Column -->
+<div class="col-md-6">
+    <!-- Start First Card -->
+<div class="card mb-10">
+<div class="card-header bg-info">
+<h5 class="font-weight-bold">Text Analysis</h5>
+</div>
+<!-- First Row In Card -->
+<div class="row">
+<div class="card-body">
+<p><strong>Number of nGrams:</strong> {{num_of_ngrams}} </p>
+</div>
+
+<!-- End of First Row In Card -->
+</div>
+       <div style="background-color: #adb5bd">
+<a href="#" class="btn  btn-danger btn-block" download="nGram_List.tsv" onclick="downloadnGrams()">Download nGrams As TSV</a>
+</div>
+<!-- End of First Card -->
+</div>
+
+<div class="card mb-6">
+<div class="card-header bg-info">
+</div>
+ <div style="background-color: #adb5bd">
+<a href={{ url_for('ngram_input') }} class="btn  btn-warning btn-block">New Calculation</a>
+</div>
+</div>
+    <!-- End of First Column -->
+
+</div>
+
+    <!-- Start of Second Column -->
+<div class="col-md-6">
+    <!-- Start of First Card Second Column -->
+<div class="card">
+<div class="card-header bg-info">
+<h5 class="card-title font-weight-bold">Frequency Chart</h5>
+</div>
+<div class="card-body">
+<table id="tables" class="table table-striped table-bordered" style="width:100%;">
+<thead>
+<tr>
+<th>Token</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+{% for ngram, count in ngrams.items() %}
+<tr>
+<td>{{ ' '.join(ngram) }}</td>
+<td>{{count}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+    <!-- End of First Card in Second Column -->
+</div>
+    <!-- End of Second Column -->
+</div>
+    <!-- End of First Row -->
+</div>
+
+
+
+<script type = "text/javascript">
+$(document).ready( function () {
+var table = $('#tables').DataTable({
+columnDefs: [
+{ type: 'num', targets: 0 }
+],
+order: [[ 0, 'desc' ]],
+"iDisplayLength": 10
+});
+} );
+</script>
+<script type="text/javascript">
+function downloadnGrams() {
+  var ngrams = {{ ngrams_dict|tojson|safe }};
+  var tsvContent = "data:text/tsv;charset=utf-8,";
+  tsvContent += "nGram\tFrequency\n";
+  for (var ngram in ngrams) {
+    var ngramStr = ngram.replace(/'/g, '').slice(1, -1);  // remove single quotes and parentheses from ngram string
+    var freq = ngrams[ngram];
+    tsvContent += ngramStr.replace(/,/g, ' ') + '\t' + freq + '\n';  // replace colon with tab in ngram string
+  }
+  var encodedUri = encodeURI(tsvContent);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "nGram_List.tsv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+
+
+{% endblock %}

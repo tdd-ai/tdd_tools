@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+{% if wc_image %}
+<img src="data:image/png;base64,{{ wc_image }}" alt="Word cloud" class="word_c">
+{% endif %}
+{% endblock %}

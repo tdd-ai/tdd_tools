@@ -1,36 +1,22 @@
-{% include 'navbar.html' %}
-    <main role="main">
-
+{% extends "base.html" %}
+    {% block content %}
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="container">
+        <div class="jumbotron">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h3 class="mt-5"><b>TDD Tools Web Service</b></h3>
+<h3 class="mt-5"><b>TDD Tools Web Service</b></h3>
+
                 </div>
             </div>
-        </div>
-
-        <div class="container">
 <div class="card-deck">
 <div class="card bg-light mb-3">
   <div class="card-header text-info stretched-link">Frequency</div>
   <div class="card-body">
-    <h5 class="card-title"><b>Case Sensitive Frequency Calculator</b></h5>
+    <h5 class="card-title"><b>Frequency Calculator</b></h5>
     <p class="card-text">
-This tool calculates the frequency of tokens in given text. The frequency is calculated case sensitively which means "git" and "GİT" considered as two different tokens.
+This tool calculates the frequency of tokens in given text.
 </p>
-      <a href="/freq" class="stretched-link"></a>
-  </div>
-</div>
-
-<div class="card bg-light mb-3">
-  <div class="card-header text-info stretched-link">Frequency</div>
-  <div class="card-body">
-    <h5 class="card-title"><b>Case Insensitive Frequency Calculator</b></h5>
-    <p class="card-text">
-This tool calculates the frequency of tokens in given text. The frequency is calculated case insensitively which means "git" and "GİT" considered as one and same token.
-</p>
-      <a href="/freq_ci" class="stretched-link"></a>
+      <a href="/freq_input" class="stretched-link"></a>
   </div>
 </div>
 
@@ -40,22 +26,21 @@ This tool calculates the frequency of tokens in given text. The frequency is cal
       <h5 class="card-title"><b>Turkish Deascifiier</b></h5>
     <p class="card-text">This tool deascifies given texts.
         The tool uses <a href="https://github.com/emres/turkish-deasciifier">turkish-deasciifier</a> by Emre Sevinç. </p>
- <a href="/deascii" class="stretched-link"></a>
+ <a href="/deascii_input" class="stretched-link"></a>
   </div>
 </div>
 </div>
 
 
-
 <div class="card-deck">
 <div class="card bg-light mb-3">
-  <div class="card-header text-info stretched-link">List</div>
+  <div class="card-header text-info stretched-link">Word Cloud</div>
   <div class="card-body">
-    <h5 class="card-title"><b>Text vs List</b></h5>
+    <h5 class="card-title"><b>Word Cloud</b></h5>
     <p class="card-text">
-This tools checks if words in a given list occurs in the given text file.
+This tools generates a word cloud using the given text.
 </p>
-      <a href="/list_check" class="stretched-link"></a>
+      <a href="/word_cloud_input" class="stretched-link"></a>
   </div>
 </div>
 
@@ -69,19 +54,6 @@ This tools generates ngrams from the given text file within specified ngram span
       <a href="/ngram" class="stretched-link"></a>
   </div>
 </div>
-
-
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-tdd @ 2022
-                    <hr>
-                </div>
-            </div>
-        </div>
-
-
-</body>
-
-</html>
+</div>
+</div>
+ {% endblock %}

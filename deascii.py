@@ -3506,4 +3506,3 @@ class Deasciifier:
                   index = index - 1
 
             return s
-
