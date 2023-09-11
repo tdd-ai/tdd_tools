@@ -1,6 +1,9 @@
+import os
 import re
 from collections import defaultdict
 from unicode_tr import unicode_tr
+
+os.environ['MPLCONFIGDIR'] = '/var/www/.cache/matplotlib'
 
 def white_spaced(text):
     txt = re.sub(r'([a-zşğıiüöçA-ZŞĞIİÜÖÇ.])([?,.!"“”;:])', r'\1 \2 ', text)
