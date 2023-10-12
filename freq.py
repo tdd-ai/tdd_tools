@@ -77,3 +77,4 @@ def convert_to_html(new_word_order):
         freq = item[1]
         html_str += f"{word}<sup><span class='badge badge-pill badge-warning' onclick=\"this.classList.toggle('selected')\">{freq}</span></sup>"
     return html_str
+
