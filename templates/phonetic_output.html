@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Start Jumbotron -->
+<div class="jumbotron">
+    <div class="col-md-12">
+        <div class="card mb-3">
+            <div class="card-header bg-success">
+                <h5 class="card-title font-weight-bold">Phonetic Transcription</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-6" style="background-color: #d1f3e7">
+                        <h3 style="background-color: #03191c; color: wheat; padding: 5px;">Input Text</h3>
+                        <p class="card-text">{{ input_text }}</p>
+                    </div>
+                    <div class="col-md-6" style="background-color: #eee3b9">
+                        <h3 style="background-color: #0e616e; color: wheat; padding: 5px;">Transcripted Output</h3>
+                        <p class="card-text">{{ phonetic_output | join(' ') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="{{ url_for('phonetic_input') }}" class="btn btn-info btn-block"> New Phonetic Transcription </a>
+    </div>
+</div>
+{% endblock %}
