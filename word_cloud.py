@@ -1,9 +1,12 @@
+import os
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from io import BytesIO
 from freq import text_freq_cs, text_freq_ci
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+
+os.environ['MPLCONFIGDIR'] = '/var/www/.cache/matplotlib'
 
 
 def generate_wordcloud(text, stop_w, case, cmap):

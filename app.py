@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request, render_template, Response, redirect, url_for, session, flash
 import matplotlib.pyplot as plt
 from deascii import Deasciifier
@@ -16,6 +17,7 @@ from jinja2 import Environment
 
 env = Environment()
 env.filters['b64encode'] = b64encode
+os.environ['MPLCONFIGDIR'] = '/var/www/.cache/matplotlib'
 
 app = Flask(__name__)
 app.secret_key = 'top_secret_key' # Set a secret key for your app
