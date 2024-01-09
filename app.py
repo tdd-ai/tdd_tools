@@ -170,6 +170,37 @@ def wc_post():
     wc_image = b64encode(wc_cloud).decode('utf-8')
     return render_template("word_cloud_output.html", wc_image=wc_image, case=case)
 
+@app.route('/phonetic_input', methods=['POST', 'GET'])
+def phonetic_input():
+    if request.method == 'POST':
+        in_text = request.form['in_text']
+        if len(in_text) == 0:
+            flash("No input provided")
+            return render_template('/phonetic_input.html')
+        return redirect(url_for('phonetic_post', in_text=in_text))
+    return render_template('/phonetic_input.html')
+
+@app.route('/phonetic_output', methods=['POST', 'GET'])
+def phonetic_post():
+    phonetic_output = []
+    text = request.args.get('in_text')
+    for word in text.split():
+        phonetic_analysis = fonetik_analiz(word)
+        phonetic_output.append(phonetic_analysis)
+
+    return render_template("phonetic_output.html",  input_text=text, phonetic_output=phonetic_output)
+
+@app.route('/rhyme_input', methods=['POST', 'GET'])
+def rhyme_input():
+    if request.method == 'POST':
+        in_text = request.form['in_text']
+        if len(in_text) == 0:
+            flash("No input provided")
+            return render_template('/rhyme_input.html')
+        return redirect(url_for('kafiye_post', in_text=in_text))
+    return render_template('/rhyme_input.html')
+
+
 
 if __name__ == '__main__':
     app.config["DEBUG"] = True
